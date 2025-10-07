@@ -1,7 +1,7 @@
 /**
   Object representing a single graded component.
   param AssignmentName
-  param weight weighted in [0, 1] (not required to sum to 1 across entries; see GradeBook)
+  param weight weighted in [0, 100] (not required to sum to 1 across entries; see GradeBook)
   param score  percentage in [0, 100]
  */
 public record Grade(String AssignmentName, double weight, double score) {
@@ -10,8 +10,8 @@ public record Grade(String AssignmentName, double weight, double score) {
         if (AssignmentName == null || AssignmentName.isBlank()) {
             throw new IllegalArgumentException("name must be non-blank");
         }
-        if (Double.isNaN(weight) || weight < 0.0 || weight > 1.0) {
-            throw new IllegalArgumentException("weight must be in [0,1]");
+        if (Double.isNaN(weight) || weight < 0.0 || weight > 100.0) {
+            throw new IllegalArgumentException("weight must be in [0,100]");
         }
         if (Double.isNaN(score) || score < 0.0 || score > 100.0) {
             throw new IllegalArgumentException("score must be in [0,100]");
