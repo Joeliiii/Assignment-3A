@@ -10,7 +10,7 @@ public record Grade(String AssignmentName, double weight, double score) {
         if (AssignmentName == null || AssignmentName.isBlank()) {
             throw new IllegalArgumentException("name must be non-blank");
         }
-        if (Double.isNaN(weight) || weight < 0.0 || weight > 100.0) {
+        if (Double.isNaN(weight) || weight < 0.0 || weight >= 100.0) {
             throw new IllegalArgumentException("weight must be in [0,100]");
         }
         if (Double.isNaN(score) || score < 0.0 || score > 100.0) {

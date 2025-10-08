@@ -40,7 +40,7 @@ public class Menu {
     private static void addGradeFlow(GradeBook gradeBook, Scanner scanner) {
         System.out.print("Assignment name: ");
         String name = scanner.nextLine().trim();
-	if (name.isEmpty()) name = null)
+	if (name.isEmpty()) name = null;	
         System.out.print("Weight (0–100): ");
         double w = Double.parseDouble(scanner.nextLine().trim());
         System.out.print("Weight (0–100): ");
@@ -55,7 +55,7 @@ public class Menu {
             return;
         }
         for (int i = 0; i < gradeBook.size(); i++) {
-	    int display = i + 1
+	    int display = i + 1;
             Grade g = gradeBook.getEntries().get(i);
             System.out.printf("%d) %-20s weight=%.2f score=%.2f%n",
                     display, g.AssignmentName(), g.weight(), g.score());
