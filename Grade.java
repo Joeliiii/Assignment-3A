@@ -25,6 +25,18 @@ public record Grade(String AssignmentName, double weight, double score) {
 
     /* new entry with updated weight (validates bounds). */
     public Grade withWeight(double newWeight) {
-        return new Grade(this.AssignmentName, newWeight, this.score);
+        return new Grade(this.AssignmentName, newWeight, this.weight);
+    }
+    @Override
+    public boolean equals(Object o) {
+	    if (this == o) return true;
+	    if (!(o instanceof Grade other)) return false;
+	    return this.AssignmentName.toLowerCase().equals(other.AssignmentName.toLowerCase())
+            	&& this.weight == other.weight
+            	&& this.score == other.score;
+    }
+
+    public boolean isPerfect() {
+        return this.score == 100.0;
     }
 }

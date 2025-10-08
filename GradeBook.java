@@ -12,6 +12,20 @@ public class GradeBook {
 
     private final List<Grade> entries = new ArrayList<>();
 
+
+    private Double cachedAverage = null;
+
+    public int indexOfByName(String name) {
+	    	if (name == null) return -1;
+	    	for (int i = 0; i < entries.size(); i++) {
+            		if (entries.get(i).AssignmentName().toLowerCase().equals(name.toLowerCase())) {
+                		return i;
+            		}
+        	}
+        	return -1;
+    }
+
+
     public void addGrade(String name, double weight, double score) {
         entries.add(new Grade(name, weight, score));
     }
@@ -52,8 +66,12 @@ public class GradeBook {
      * @param normalizeIfNeeded if true, weights are normalized to sum to 100.
      * @return final numeric grade [0–100]
      */
+    
     public double calculateFinal(boolean normalizeIfNeeded) {
-        if (entries.isEmpty()) return 0.0;
+    
+	if (cachedAverage != null) return cachedAverage;
+
+	if (entries.isEmpty()) return 0.0;
 
         double sumW = weightSum();
         if (normalizeIfNeeded) {
@@ -62,6 +80,7 @@ public class GradeBook {
             for (Grade g : entries) {
                 total += g.score() * (g.weight() / sumW);
             }
+	    cachedAverage = total;
             return total;
         } else {
             if (Math.abs(sumW - 100.0) > 1e-6) {
@@ -71,6 +90,7 @@ public class GradeBook {
             for (Grade g : entries) {
                 total += g.score() * (g.weight() / 100.0);
             }
+	    cachedAverage = total;
             return total;
         }
     }
