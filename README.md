@@ -26,3 +26,29 @@ Normalize weights automatically if they don’t sum to exactly 100.
 Compute final weighted average and corresponding letter grade.
 
 Clear all grades or view the current list at any time.
+
+Assumptions
+
+Each assignment weight is in 0–100.
+
+Scores are in 0–100.
+
+The calculateFinal(true) method normalizes weights if they don’t sum to 100.
+
+The calculateFinal(false) method requires that weights sum to 100 (±1e-6) and throws otherwise.
+
+Letter grade scale:
+
+A: 90–100
+
+B: 80–89.9
+
+C: 70–79.9
+
+D: 60–69.9
+
+F: <60
+
+Usage:
+
+Compile using javac.
